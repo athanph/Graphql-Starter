@@ -4,7 +4,7 @@ import { ApolloServer, gql } from 'apollo-server-express'
 import { merge } from 'lodash'
 
 // The GraphQL schema
-const typeDefs = gql`
+const types = gql`
 	type Query {
 		"A simple type for getting started!"
 		hello: String
@@ -15,11 +15,13 @@ const typeDefs = gql`
 `
 
 // A map of functions which return data for the schema.
-const resolvers = {
+let resolvers = {
 	Query: {
 		hello: () => 'world',
 	},
 }
+
+const typeDefs = [types]
 
 // Read the current directory and load types and resolvers automatically
 fs.readdirSync(__dirname)
